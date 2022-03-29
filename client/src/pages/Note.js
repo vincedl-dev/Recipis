@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Signup from '../components/signup'
 function Note() {
   return (
-    <div>Note</div>
+    <Signup />
   )
 }
 

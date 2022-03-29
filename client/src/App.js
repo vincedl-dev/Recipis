@@ -7,9 +7,17 @@ import {
 import Note from './pages/Note'
 import Create from './pages/Create'
 import './App.css';
-
+import {createTheme,ThemeProvider} from '@material-ui/core/styles'
+const theme = createTheme({
+  palette:{
+    primary:{
+      main:'#000000'
+    }
+  }
+})
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <div>
     <BrowserRouter>
     <Routes>
@@ -18,7 +26,10 @@ function App() {
         </Routes>
      
   </BrowserRouter>
+
+
   </div>
+  </ThemeProvider>
   );
 }
 
