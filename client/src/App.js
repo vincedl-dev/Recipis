@@ -1,35 +1,46 @@
-
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import Note from './pages/Note'
+import Notes from './pages/Notes'
 import Create from './pages/Create'
-import './App.css';
-import {createTheme,ThemeProvider} from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core'
+import { purple } from '@material-ui/core/colors'
+import Layout from './components/Layout'
+
+
 const theme = createTheme({
-  palette:{
-    primary:{
-      main:'#000000'
-    }
+  palette: {
+    primary: {
+      main: '#fefefe'
+    },
+    secondary: purple
+  },
+  typography: {
+    fontFamily: 'Quicksand',
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
+    fontWeightBold: 700,
   }
 })
+
+
+
 function App() {
   return (
+
     <ThemeProvider theme={theme}>
-    <div>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Note />} />
+      <Router>
+        <Layout>
+          <Routes>
+          <Route path="/" element={<Notes />} />
         <Route  path="/create"element={<Create />} />
-        </Routes>
-     
-  </BrowserRouter>
-
-
-  </div>
-  </ThemeProvider>
+          </Routes>
+        </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
 
