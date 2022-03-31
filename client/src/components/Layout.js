@@ -60,7 +60,7 @@ export default function Layout({ children }) {
     { 
       text: 'My Notes', 
       icon: <SubjectOutlined color="secondary" />, 
-      path: '/' 
+      path: '/noted ' 
     },
     { 
       text: 'Create Note', 

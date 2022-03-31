@@ -10,15 +10,15 @@ const createAccount = async(req,res) =>{
     try{
      
         if(!email || !user_password || !username){
-            return res.status(400).json({errorMessage:"input all fields"})
+             res.status(400).json({message:"input all fields"})
         }
         const existingEmail = await User.findOne({email})
         if(existingEmail)
-        return res.status(400).json({errorMessage:"user already register"})
+        return res.status(400).json({message:"user already register"})
 
         const existingUsername = await User.findOne({username})
         if(existingUsername)
-        return res.status(400).json({errorMessage:"username already exist"})
+        return res.status(400).json({message:"username already exist"})
 
         //hash the password
         const salt = await bcrypt.genSalt()
@@ -30,12 +30,12 @@ const createAccount = async(req,res) =>{
             username,email,password
         })
         const savedUser = await newUser.save();
-        res.status(201).json("Successfully created and account")
+        res.status(201).json({message:"Successfully created and account"})
         
     }
     catch(err){
-        console.log(err)
-        res.status(500).send()
+        console.log("WORKING")
+        res.status(500).send("why")
     }
 }
 
@@ -46,23 +46,24 @@ const login_user = async(req,res) => {
     try{
      
         if(!email || !password){
-            return res.status(400).json({errorMessage:"input all fields"})
+            return res.status(401).json({message:"input all fields"})
         }
 
     const existingUser = await User.findOne({email});
     if(!existingUser)
-    return res.status(401).json({errorMessage:"Incorrect Email or Password"})
+    return res.status(401).json({message:"Incorrect Email or Password"})
 
     const passwordCorrect = await bcrypt.compare(password,existingUser.password)
 
     if(!passwordCorrect)
-    return res.status(401).json({errorMessage:"Incorrect Email or Password"})
+    return res.status(401).json({message:"Incorrect Email or Password"})
 
     //sign token
     const token = jwt.sign({user_id:existingUser._id, username:existingUser.username},process.env.JWT_SECRET)
+    const logintoken = jwt.sign("login",process.env.SIGNED_IN)
+    
+    res.status(200).cookie('token',token).json({"username":existingUser.username,message:"Successfully log in",logintoken})
 
-    res.cookie("token", token,{})
-    res.status(200).json({"username":existingUser.username,message:"Successfully log in"})
 
 
     } catch(err){

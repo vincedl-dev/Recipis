@@ -3,8 +3,12 @@ const User = require('../models/User')
 
 
 const auth = (req,res, next) =>  {
+
     try{
-        const token = req.cookies.token
+       
+      
+        const {token} = req.cookies
+        console.log(token)
         if(!token) return res.status().json({errorMessage:"unauthorized"})
         const verified = jwt.verify(token,process.env.JWT_SECRET)
     
@@ -20,10 +24,14 @@ const auth = (req,res, next) =>  {
 
 // check current user
 const checkUser = (req, res) => {
+
+ 
   try{
+    
     const token = req.cookies.token
     if(!token ) return res.status(401).json({errorMessage:"unauthorized"})
     const verified = jwt.verify(token,process.env.JWT_SECRET)
+    
     res.status(200).json({"username":verified.username})
   }
   catch(err){

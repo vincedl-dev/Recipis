@@ -8,8 +8,11 @@ import Create from './pages/Create'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import { purple } from '@material-ui/core/colors'
 import Layout from './components/Layout'
-
-
+import Login from './components/login'
+import Signup from './components/signup'
+import Home from "./components/Home";
+import axios from 'axios'
+axios.defaults.withCredentials = true;
 const theme = createTheme({
   palette: {
     primary: {
@@ -33,12 +36,19 @@ function App() {
 
     <ThemeProvider theme={theme}>
       <Router>
-        <Layout>
-          <Routes>
+        
+          <Routes>  
+        
           <Route path="/" element={<Notes />} />
-        <Route  path="/create"element={<Create />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route  path="/create"element={<Create />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/layout" element={<Layout />} />  
+
+       
           </Routes>
-        </Layout>
+   
       </Router>
     </ThemeProvider>
   );

@@ -64,7 +64,7 @@ module.exports.update_recipe = async (req,res) => {
     const {id} = req.params
     try{
         const data = await Recipe.findByIdAndUpdate(id,req.body,{new:true})
-        res.status(200).json(data)
+        res.status(200).json({"message":"Succefully Updated the Recipe"})
     }
     catch(err){
         console.log(err)

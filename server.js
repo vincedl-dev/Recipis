@@ -1,27 +1,31 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
-const cookieParser = require("cookie-parser")
+
 const cors = require("cors")
 const userRouter = require('./router/userRouter')
+const cookieParser = require("cookie-parser")
 const {auth,checkUser} = require('./middlewares/authMiddleware')
 dotenv.config()
 //set up server
 const app = express()
 const PORT = process.env.PORT || 5000;
 
-
-
 app.listen(PORT, () => console.log('server started'))
-
 //middleware
-app.use(express.json())
-app.use(cookieParser())
-app.use(cors({
-    origin:["http://localhost:3000"],
-    credentials:true
 
-})) 
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+    origin: [
+      "http://localhost:3000",
+      "https://mern-auth-template-tutorial.netlify.app",
+    ],
+    credentials: true,
+  }));
+
+
+
 
 
 mongoose.connect(process.env.MDB_CONNECT,{
@@ -33,7 +37,10 @@ mongoose.connect(process.env.MDB_CONNECT,{
 })
 
 
-
 app.get('/isloggedin',checkUser)
-app.use("/recipe", auth, require("./router/recipeRouter"));
+app.use("/recipe",auth, require("./router/recipeRouter"));
 app.use(userRouter)
+
+
+
+

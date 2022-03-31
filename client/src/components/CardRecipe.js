@@ -11,7 +11,7 @@ import { Grid } from '@mui/material'
 export default function CardRecipe() {
   return (
     <Grid item md={3}>
-    <Card elevation={1}>
+    <Card elevation={1} >
         <CardHeader
           action={
             <IconButton >
