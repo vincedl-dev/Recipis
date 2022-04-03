@@ -12,13 +12,15 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function RecipeCard({id,title,body,clickModal}){
+export default function RecipeCard({id,title,body,clickModal,deleteDialog}){
+
 return(
   <Card sx={{ maxWidth: 250, maxHeight:200}}>
 <CardHeader action={
-    <IconButton aria-label="settings">
-      <MoreVertIcon />
+    <IconButton aria-label="delete" onClick={() => deleteDialog(id)}>
+      <DeleteIcon />
     </IconButton>
   }
   title={title}

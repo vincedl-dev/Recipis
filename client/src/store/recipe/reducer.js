@@ -1,4 +1,4 @@
-import { ALL_RECIPES,UPDATE_RECIPE } from "./types"
+import { ALL_RECIPES,UPDATE_RECIPE,DELETE_RECIPE,ADD_RECIPE } from "./types"
 
 const initialState = {
     recipes:[]
@@ -16,6 +16,16 @@ const recipeReducer = (state = initialState,action) => {
             ...state,
             message:action.payload.message
         }
+        case DELETE_RECIPE: return{
+            ...state,
+            message:action.payload.message
+        }
+
+        case ADD_RECIPE: return{
+            ...state,
+            message:action.payload.message
+        }
+
 
         default:return state
     }
