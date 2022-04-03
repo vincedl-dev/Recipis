@@ -12,6 +12,8 @@ import Login from './components/login'
 import Signup from './components/signup'
 import Home from "./components/Home";
 import axios from 'axios'
+import UserRecipe from "./components/UserRecipe";
+import RecipeDetails from "./components/ReipeDetails";
 axios.defaults.withCredentials = true;
 const theme = createTheme({
   palette: {
@@ -38,13 +40,17 @@ function App() {
       <Router>
         
           <Routes>  
-        
+
           <Route path="/" element={<Notes />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
           <Route  path="/create"element={<Create />} />
           <Route path="/Home" element={<Home />} />
-          <Route path="/layout" element={<Layout />} />  
+          <Route path="/layout" element={<Layout />} /> 
+          <Route path="/recipe/:id" element={<RecipeDetails />} /> 
+
+          {/* <Route path="/recipe/user" element={<UserRecipe />} /> */}
 
        
           </Routes>

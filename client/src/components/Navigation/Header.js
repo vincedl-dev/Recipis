@@ -16,6 +16,7 @@ import axios from 'axios'
 import { autoAuth } from '../../store/user/action';
 import { useNavigate } from 'react-router-dom';
 import {LOGEDIN} from '../../store/user/types'
+import {Link} from 'react-router-dom'
 export default function Header() {
   
   const [auth, setAuth] = useState(true);
@@ -99,7 +100,7 @@ export default function Header() {
                 onClose={handleClose}
               >
                
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem><Link to='/recipe/user'>Recipes</Link></MenuItem>
                 <MenuItem onClick={() => console.log("logout")}>Logout</MenuItem>
               </Menu>
             </div>

@@ -14,6 +14,7 @@ const auth = (req,res, next) =>  {
     
         req.user_id = verified.user_id;
         req.username = verified.username
+      
        next()
     }catch(err){
         console.log(err)

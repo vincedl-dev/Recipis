@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 
 import Header from './Navigation/Header'
-import Recipe from './Recipe'
+import Recipes from './Recipes'
+import UserRecipe from './UserRecipe'
 export default function Home() {
 
   return (
        <>
         <Header />
-        <Recipe />
+        <UserRecipe />
        </>
   )
 }
