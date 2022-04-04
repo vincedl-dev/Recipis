@@ -4,14 +4,13 @@ const initialState = {
     logintoken:localStorage.getItem("logintoken"),
     username:"",
     message:"",
-    isCreated:false,
-   
+    isCreated:false,  
     isLogin:false
     
 }
 
 const userReducer = (state = initialState,action) => {
-
+    
  
     switch(action.type){
         case  SIGNUP: return { 
@@ -40,13 +39,12 @@ const userReducer = (state = initialState,action) => {
          
             ...state,
             message:action.payload.message,
-            username:action.payload.username,
-            
+            username:action.payload.username,        
             isAuthenticated:true,
             type:LOGIN,
             apiLoadingL:true,
-            datatype:LOGIN
-          
+            datatype:LOGIN,
+            
         }
 
         case  ERROR_LOGIN: return {
@@ -65,8 +63,13 @@ const userReducer = (state = initialState,action) => {
             ...state,
             username:action.payload.username,
             isAuthenticated:false,
-            logintoken:""
+        
         }
+        case "SET_TOKEN": return{
+            ...state,
+            logintoken:localStorage.getItem("logintoken")
+        }
+
         case API_END: return{
             ...state,
             apiLoading:false,

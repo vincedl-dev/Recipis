@@ -47,7 +47,7 @@ const theme = createTheme();
   const navigate = useNavigate();
   const [dialogMessage, setDialogMessage] = useState({message:'', title:'', type:''});
   const dataType = useSelector(state => state.user.type);
-  
+  const logintoken = useSelector(state => state.user.logintoken)
   const apiLoading = useSelector(state => state.user.apiLoading);
   const [open, setOpen] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
@@ -58,11 +58,15 @@ const theme = createTheme();
   };
   
   const handleClose = () => {
-    setOpen(false);
   
+    setOpen(false);
     if(dataType === LOGIN ) {
+      dispatch({type:"SET_TOKEN",payload:{}})
       navigate("/home");
     }
+
+  
+  
    
   };
 

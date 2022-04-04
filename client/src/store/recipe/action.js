@@ -53,3 +53,4 @@ export const getRecipeDetails = (id) => {
         .catch(err => console.log(err.message))
     }
 }
+

@@ -38,17 +38,7 @@ export default function Header() {
     setAnchorEl(null);
   };
   
- 
-  // useEffect(()=>{
-  //   console.log(logintoken)
-  //   if(!logintoken ){
-  //     navigate('/login')
-  //   }
-    
-  
-  // },[])
 
-  
 
   return (
     <Box sx={{ flexGrow: 1 }}>

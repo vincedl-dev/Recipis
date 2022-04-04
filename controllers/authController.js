@@ -2,9 +2,18 @@ const User = require('../models/User')
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const expressAsyncHandler = require ('express-async-handler');
+const { validationResult } = require('express-validator');
 
 //register
-const createAccount = async(req,res) =>{
+const createAccount = expressAsyncHandler(async(req,res) =>{
+    const error = validationResult(req);
+    if(!error.isEmpty()) {
+        return res.status(400).json({
+            error: error.array()
+        });
+    }
+
     const {username,email,user_password} = req.body
     console.log(username,email,user_password)
     try{
@@ -37,12 +46,22 @@ const createAccount = async(req,res) =>{
         console.log("WORKING")
         res.status(500).send("why")
     }
-}
+})
 
 //login 
 
-const login_user = async(req,res) => {
-    const {email,password} = req.body
+const login_user = expressAsyncHandler(async(request,res) => {
+
+    const {email,password} = request.body
+
+    const error = validationResult(request);
+    console.log(error)
+    if(!error.isEmpty()) {
+        return response.status(400).json({
+            error: error.array()
+        });
+    }
+
     try{
      
         if(!email || !password){
@@ -72,7 +91,7 @@ const login_user = async(req,res) => {
     }
     
 
-}
+})
 
 //log out
 
