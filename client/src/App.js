@@ -8,17 +8,17 @@ import {
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import { purple } from '@material-ui/core/colors'
 
-import Login from './components/login'
-import Signup from './components/signup'
-import Home from "./components/Home";
+import Login from './components/pages/login'
+import Signup from './components/pages/signup'
+import Home from "./components/pages/Home";
 import axios from 'axios'
-import UserRecipe from "./components/UserRecipe";
-import RecipeDetails from "./components/ReipeDetails";
+import UserRecipe from "./components/pages/UserRecipe";
+import RecipeDetails from "./components/pages/ReipeDetails";
 import { useSelector } from "react-redux";
 import Header from "./components/Navigation/Header";
 
-import SearchPage from "./components/SearchPage"
-import PageNotFound from "./components/PageNotFound";
+import SearchPage from "./components/pages/SearchPage"
+import PageNotFound from "./components/pages/PageNotFound";
 import './App.css'
 
 axios.defaults.withCredentials = true;

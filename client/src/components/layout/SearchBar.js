@@ -21,21 +21,21 @@ export default function SearchBar() {
  }
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-   <TextField
-   onChange = {(e) => setSearch(e.target.value)}
-    type="search"
-    variant="outlined"
-    margin="normal"
-    value={search}
-    placeholder="Search for Recipe"
-    InputProps={{
-      endAdornment: (
-        <InputAdornment position="end">
-          <SearchIcon />
-        </InputAdornment>
-      )
-    }}
-  />
+    <TextField style={{float:"right" }}
+    onChange = {(e) => setSearch(e.target.value)}
+      type="search"
+      variant="outlined"
+      margin="normal"
+      value={search}
+      placeholder="Search for Recipe"
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <SearchIcon />
+          </InputAdornment>
+        )
+      }}
+    />
   </Box>
   )
 }

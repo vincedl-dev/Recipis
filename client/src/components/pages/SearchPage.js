@@ -1,12 +1,13 @@
 import React, { useEffect,useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams } from 'react-router-dom';
-//import {Puff} from 'react-loader-spinner'
-import { search_recipe } from '../store/recipe/action';
+
+import { search_recipe } from '../../store/recipe/action';
 import {Container,Box,Grid, Typography} from '@mui/material'
-import SearchBar from './SearchBar';
-import Cards from './Cards'
-import Spinner from './Spinner';
+import SearchBar from '../layout/SearchBar';
+import Cards from '../layout/Cards'
+import Spinner from '../layout/Spinner';
+
 export default function SearchPage() {
     const dispatch = useDispatch()
     const recipes = useSelector(state => state.recipe.searchResult)

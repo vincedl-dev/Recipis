@@ -2,8 +2,8 @@ import { Typography,Container, Box } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getRecipeDetails } from '../store/recipe/action'
-import Spinner from './Spinner'
+import { getRecipeDetails } from '../../store/recipe/action'
+import Spinner from '../layout/Spinner'
 
 
 export default function RecipeDetails() {
@@ -19,11 +19,10 @@ export default function RecipeDetails() {
     dispatch(getRecipeDetails(id))
   },[])
   
-  console.log(recipe)
+
   return (
     <Container sx={{mt:5}}>
-
-{
+        {
                recipe.length !== 0? 
                 (
               

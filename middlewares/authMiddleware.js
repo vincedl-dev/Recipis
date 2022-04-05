@@ -41,24 +41,6 @@ const checkUser = (req, res) => {
 }
  
 }
-// const token = req.cookies.jwt;
-//   console.log(token)
-//   if (token) {
-//     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
-//       if (err) {
-       
-      
-//       } else {
-//         let user = await User.findById(decodedToken.id);
-//         res.status(200).json(user)
-    
-//       }
-//     });
-//   } else {
-//     res.status(401).json("Invalid Credentials")
-
-//   }
-// };
 
 
 module.exports = { auth, checkUser };

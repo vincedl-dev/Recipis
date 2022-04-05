@@ -10,7 +10,7 @@ import {SIGNUP,
     } from './types'
 
 export const signUp = (username,email,user_password) => {
-    console.log(username,email,user_password)
+
     return  (dispatch) => {
         axios.post('http://localhost:5000/signup',{username,email,user_password})
         .then(res => dispatch({type:SIGNUP,payload:res.data}))

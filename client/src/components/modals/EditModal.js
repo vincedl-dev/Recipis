@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import {Dialog,
     DialogTitle,
     DialogContent,
-    DialogActions,
+
     TextField,
     Box,
     Button} from '@mui/material'
@@ -22,7 +22,7 @@ export default function EditModal({_id,title,body}) {
     const dispatch = useDispatch()
     const [editDialog,setEditDialog] = useState(false)
 
-    const [editId,setEditId] = useState(_id)
+    // const [editId,setEditId] = useState(_id)
     const [editTitle,setEditTitle] = useState(title)
     const [editBody,setEditBody] = useState(body)
 
@@ -35,10 +35,10 @@ export default function EditModal({_id,title,body}) {
     formik.resetForm()
     
   }
-const UpdateRecipe = () => {
-    dispatch(updateRecipe(editId,editTitle,editBody))
-    setEditDialog(false)
-}
+// const UpdateRecipe = () => {
+//     dispatch(updateRecipe(editId,editTitle,editBody))
+//     setEditDialog(false)
+// }
 
 const formik = useFormik({
   initialValues: {
@@ -55,7 +55,7 @@ const formik = useFormik({
 
     body: Yup
       .string()
-      .max(255)
+      .max(1000)
       .required(
         'Description is required'),
   
@@ -113,7 +113,7 @@ const formik = useFormik({
               error={Boolean(formik.touched.title && formik.errors.title)}
               fullWidth
               helperText={formik.touched.title && formik.errors.title}
-              label="title"
+              label="Title"
               margin="normal"
               name="title"
               onBlur={formik.handleBlur}
@@ -126,7 +126,7 @@ const formik = useFormik({
               error={Boolean(formik.touched.body && formik.errors.body)}
               fullWidth
               helperText={formik.touched.body && formik.errors.body}
-              label="description"
+              label="Description"
               margin="normal"
               name="body"
               onBlur={formik.handleBlur}
@@ -136,7 +136,7 @@ const formik = useFormik({
             />
         
             <Button
-              onClick = {() => console.log("test")}
+              
               type="submit"
               fullWidth
               variant="contained"

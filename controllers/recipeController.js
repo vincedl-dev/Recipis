@@ -1,11 +1,11 @@
 const Recipe = require('../models/Recipe')
-const mongoose = require('../models/Recipe')
+
 const expressAsyncHandler = require ('express-async-handler');
 const { validationResult } = require('express-validator');
 
 
-//get all recipe
-
+//@desc get all recipe
+//@route GET recipe/all-recipes
 module.exports.get_all_recipes = expressAsyncHandler(async(req,res) => {
   
     try{
@@ -16,6 +16,8 @@ module.exports.get_all_recipes = expressAsyncHandler(async(req,res) => {
     }
 })
 
+//@desc get all user recipe
+//@route GET recipe/user
 module.exports.get_user_recipes = expressAsyncHandler(async (req,res) => {
     const user_id= req.user_id
 
@@ -30,7 +32,8 @@ module.exports.get_user_recipes = expressAsyncHandler(async (req,res) => {
     }
 })
 
-
+//@desc get single recipe
+//@route GET recipe/:id
 module.exports.get_single_recipe = expressAsyncHandler(async(req,res) => {
     
     const id = req.params.id
@@ -53,6 +56,8 @@ module.exports.get_single_recipe = expressAsyncHandler(async(req,res) => {
 
 })
 
+//@desc search recipe
+//@route GET recipe/search
 module.exports.search_recipes = expressAsyncHandler(async(req,res) => {
     
     const title = req.query.title
@@ -68,6 +73,8 @@ module.exports.search_recipes = expressAsyncHandler(async(req,res) => {
 
 
 
+//@desc post user recipe
+//@route POST recipe/new-recipe
 module.exports.post_recipe = expressAsyncHandler(async (req,res) => {
     const error = validationResult(req);
   
@@ -90,6 +97,8 @@ module.exports.post_recipe = expressAsyncHandler(async (req,res) => {
 
 })
 
+//@desc update user recipe
+//@route PUT recipe/:id
 module.exports.update_recipe = expressAsyncHandler(async (req,res) => {
     
     const {id} = req.params
@@ -111,6 +120,9 @@ module.exports.update_recipe = expressAsyncHandler(async (req,res) => {
     }
 })
 
+
+//@desc delete user recipe
+//@route DELETE recipe/:d
 module.exports.delete_recipe =  expressAsyncHandler(async(req,res) => {
     const id = req.params.id
     const error = validationResult(req);

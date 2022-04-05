@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Dialog,
     DialogTitle,
     DialogContent,
-    DialogActions,
+  
     TextField,
     Box,
     Button} from '@mui/material'
@@ -17,8 +17,8 @@ export default function AddModal() {
 
 
 
-    const [addtitle,setAddtitle] = useState('')
-    const [addbody,setAddbody] = useState('')
+    // const [addtitle,setAddtitle] = useState('')
+    // const [addbody,setAddbody] = useState('')
     const dispatch =useDispatch()
     
   const addhandleClickOpen = () => {
@@ -29,13 +29,13 @@ export default function AddModal() {
     setAddOpen(false);
   };
 
-  const addnewRecipe = () => {
+  // const addnewRecipe = () => {
   
-    console.log(addtitle,addbody)
-    dispatch(add_Recipe(addtitle,addbody))
-    setAddOpen(false);
+  
+  //   dispatch(add_Recipe(addtitle,addbody))
+  //   setAddOpen(false);
     
-  }
+  // }
 
   const formik = useFormik({
     initialValues: {
@@ -52,7 +52,7 @@ export default function AddModal() {
   
       body: Yup
         .string()
-        .max(255)
+        .max(1000)
         .required(
           'Description is required'),
     
@@ -110,7 +110,7 @@ export default function AddModal() {
               error={Boolean(formik.touched.title && formik.errors.title)}
               fullWidth
               helperText={formik.touched.title && formik.errors.title}
-              label="title"
+              label="Title"
               margin="normal"
               name="title"
               onBlur={formik.handleBlur}
@@ -123,7 +123,7 @@ export default function AddModal() {
               error={Boolean(formik.touched.body && formik.errors.body)}
               fullWidth
               helperText={formik.touched.body && formik.errors.body}
-              label="description"
+              label="Description"
               margin="normal"
               name="body"
               onBlur={formik.handleBlur}
@@ -133,7 +133,7 @@ export default function AddModal() {
             />
         
             <Button
-              onClick = {() => console.log("test")}
+              
               type="submit"
               fullWidth
               variant="contained"

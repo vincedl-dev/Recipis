@@ -5,16 +5,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import {Container} from '@mui/material'
 import {useDispatch, useSelector} from 'react-redux'
-import { getAllRecipes,} from '../store/recipe/action';
-import Cards from './Cards';
-import SearchBar from './SearchBar';
-
-
-
-
-
-
-
+import { getAllRecipes,} from '../../store/recipe/action';
+import Cards from '../layout/Cards';
+import SearchBar from '../layout/SearchBar';
 
 export default function Recipes() {
   const recipes = useSelector(state => state.recipe.recipes)

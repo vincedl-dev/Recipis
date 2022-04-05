@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken')
 const expressAsyncHandler = require ('express-async-handler');
 const { validationResult } = require('express-validator');
 
-//register
+//@desc create new account
+//@route POST /signup
 const createAccount = expressAsyncHandler(async(req,res) =>{
     const error = validationResult(req);
     if(!error.isEmpty()) {
@@ -48,7 +49,8 @@ const createAccount = expressAsyncHandler(async(req,res) =>{
     }
 })
 
-//login 
+//@desc login user
+//@route POST /login
 
 const login_user = expressAsyncHandler(async(request,res) => {
 
@@ -70,12 +72,12 @@ const login_user = expressAsyncHandler(async(request,res) => {
 
     const existingUser = await User.findOne({email});
     if(!existingUser)
-    return res.status(401).json({message:"Incorrect Email or Password"})
+    return res.status(400).json({message:"Incorrect Email or Password"})
 
     const passwordCorrect = await bcrypt.compare(password,existingUser.password)
 
     if(!passwordCorrect)
-    return res.status(401).json({message:"Incorrect Email or Password"})
+    return res.status(400).json({message:"Incorrect Email or Password"})
 
     //sign token
     const token = jwt.sign({user_id:existingUser._id, username:existingUser.username},process.env.JWT_SECRET)
@@ -93,7 +95,8 @@ const login_user = expressAsyncHandler(async(request,res) => {
 
 })
 
-//log out
+//@desc logout user
+//@route GET /logout
 
 const logout_user = async(req,res) => {
     res.cookie("token","",{expires:new Date(0)})
