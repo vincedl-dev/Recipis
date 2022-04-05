@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+
 import Grid from '@mui/material/Grid';
 import {Container} from '@mui/material'
 import {useDispatch, useSelector} from 'react-redux'
 import { getAllRecipes,} from '../store/recipe/action';
 import Cards from './Cards';
+import SearchBar from './SearchBar';
 
 
 
@@ -31,6 +32,7 @@ export default function Recipes() {
 
   return (
     <Container> 
+      <SearchBar/>
      <Box>
         <Grid container spacing={2}>
         {

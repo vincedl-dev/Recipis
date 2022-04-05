@@ -12,17 +12,20 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios'
-import { autoAuth } from '../../store/user/action';
+
+import {user_logout} from '../../store/user/action'
 import { useNavigate } from 'react-router-dom';
-import {LOGEDIN} from '../../store/user/types'
+
 import {Link} from 'react-router-dom'
+
 export default function Header() {
   
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] =useState(null);
-  const logintoken = useSelector(state => state.user.logintoken)
+
+  
   const username = useSelector(state => state.user.username)
+  const islogout = useSelector(state => state.user.islogout)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   
@@ -38,7 +41,16 @@ export default function Header() {
     setAnchorEl(null);
   };
   
-
+  const logout = () => {
+    dispatch(user_logout())
+  
+  }
+  useEffect(()=>{
+    if(islogout){
+      console.log(islogout)
+      navigate('/login')
+    }
+  },[islogout])
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -56,7 +68,7 @@ export default function Header() {
           >
             <MenuIcon />
           </BookmarkIcon>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component={Link} to='/home' sx={{ flexGrow: 1,textDecoration:'none',color:'#fff' }}>
           Recipes
           </Typography>
           {auth && (
@@ -90,8 +102,8 @@ export default function Header() {
                 onClose={handleClose}
               >
                
-                <MenuItem><Link to='/recipe/user'>Recipes</Link></MenuItem>
-                <MenuItem onClick={() => console.log("logout")}>Logout</MenuItem>
+                <MenuItem component={Link} to='/user/recipes'>Recipes</MenuItem>
+                <MenuItem onClick={() => logout()}>Logout</MenuItem>
               </Menu>
             </div>
           )}

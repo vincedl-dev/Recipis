@@ -51,7 +51,7 @@ const theme = createTheme();
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [dialogMessage, setDialogMessage] = useState({message:'', title:'', type:''});
-  const dataType = useSelector(state => state.user.type);
+  const dataType = useSelector(state => state.user.datatype);
   
   const apiLoading = useSelector(state => state.user.apiLoading);
   const [open, setOpen] = useState(false);

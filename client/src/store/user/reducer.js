@@ -1,11 +1,13 @@
-import { SIGNUP,ERROR_SIGNUP,LOGIN,ERROR_LOGIN,LOGEDIN,API_END } from "./types"
+import { SIGNUP,ERROR_SIGNUP,LOGIN,ERROR_LOGIN,LOGEDIN,API_END, LOG_OUT } from "./types"
 
 const initialState = {
     logintoken:localStorage.getItem("logintoken"),
     username:"",
     message:"",
+    datatype:'',
     isCreated:false,  
-    isLogin:false
+    isLogin:false,
+    islogout:false
     
 }
 
@@ -69,12 +71,20 @@ const userReducer = (state = initialState,action) => {
             ...state,
             logintoken:localStorage.getItem("logintoken")
         }
+        case LOG_OUT: return{
+            ...state,
+            datatype:'',
+            islogout:true,
+            message:action.payload.message,
+            logintoken:'',
+            }
 
         case API_END: return{
             ...state,
-            apiLoading:false,
-            message:""
+            datatype:'',    
+           
         }
+        
 
         default:return state
     }

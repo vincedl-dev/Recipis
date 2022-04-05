@@ -46,8 +46,8 @@ const theme = createTheme();
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [dialogMessage, setDialogMessage] = useState({message:'', title:'', type:''});
-  const dataType = useSelector(state => state.user.type);
-  const logintoken = useSelector(state => state.user.logintoken)
+  const dataType = useSelector(state => state.user.datatype);
+ 
   const apiLoading = useSelector(state => state.user.apiLoading);
   const [open, setOpen] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
@@ -58,7 +58,7 @@ const theme = createTheme();
   };
   
   const handleClose = () => {
-  
+      
     setOpen(false);
     if(dataType === LOGIN ) {
       dispatch({type:"SET_TOKEN",payload:{}})
@@ -71,19 +71,20 @@ const theme = createTheme();
   };
 
   useEffect(() => {
+  
     
     if (!isLoaded) {
       console.log('initial loading');
       setLoaded(!isLoaded);
 
     }
-    if ( dataType === LOGIN  ) {
+    if ( dataType === LOGIN && message !== ''  ) {
       setDialogMessage({title:'Registration Success', message:message, type: LOGIN});
       handleClickOpen()
     }
 
     if ( message !== undefined && dataType === ERROR_LOGIN) {
-      console.log("napasok")
+    
       setDialogMessage({title: 'Invalid', message: (message !== undefined ? message : "sample")});
     
       handleClickOpen()
@@ -135,7 +136,7 @@ const theme = createTheme();
     
     }),
     onSubmit: () => {
-      console.log("test")
+    
       dispatch(login(
         
      

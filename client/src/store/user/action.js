@@ -5,7 +5,8 @@ import {SIGNUP,
         LOGIN,
         ERROR_LOGIN,
         LOGEDIN,
-        API_END
+        API_END,
+        LOG_OUT
     } from './types'
 
 export const signUp = (username,email,user_password) => {
@@ -39,7 +40,22 @@ export const autoAuth = () =>{
             
     }
 }
+export const user_logout = () => {
+    return(dispatch) => {
+        axios.get('http://localhost:5000/logout')
+        
+        .then(res => {
+            removeToken()
+            dispatch({type:LOG_OUT,payload:res.data})})
+        .catch(err => console.log(err))
+        
+    }
+}
  
 const saveToken = (logintoken) => {
     localStorage.setItem('logintoken',logintoken)
+}
+
+const removeToken = () => {
+    localStorage.removeItem('logintoken');
 }

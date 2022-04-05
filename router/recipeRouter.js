@@ -9,7 +9,7 @@ router.get('/all-recipes',recipeController.get_all_recipes)
 router.get('/user',recipeController.get_user_recipes)
 router.post('/new-recipe',check('title').exists(),check('body').exists(),recipeController.post_recipe)
 
-router.get('/',recipeController.search_recipes)
+router.get('/search',recipeController.search_recipes)
 
 
 

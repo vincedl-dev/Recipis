@@ -4,7 +4,7 @@ const {createAccount,login_user,logout_user} = require('../controllers/authContr
 
 const router = Router()
 
-router.post('/signup',check('username').exists(),body('email').isEmail(), body('password').isLength({ min: 6 }),createAccount)
+router.post('/signup',check('username').exists(),body('email').isEmail(), body('user_password').isLength({ min: 6 }),createAccount)
 
 router.post('/login',check('email').exists(), check('password').exists(), body('password').isLength({ min: 6 }),login_user)
 router.get('/logout',logout_user);

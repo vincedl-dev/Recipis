@@ -30,7 +30,7 @@ export default function AddModal() {
   };
 
   const addnewRecipe = () => {
-    console.log("working")
+  
     console.log(addtitle,addbody)
     dispatch(add_Recipe(addtitle,addbody))
     setAddOpen(false);
@@ -76,7 +76,7 @@ export default function AddModal() {
     
   return (
       <>
-      <Button onClick={addhandleClickOpen}  >Add Recipe</Button>
+      <Button onClick={addhandleClickOpen}  variant="contained"  >Add Recipe</Button>
   <Dialog open={addOpen} onClose={addhandleClose}>
         <DialogTitle>Add new recipe</DialogTitle>
         <DialogContent  >

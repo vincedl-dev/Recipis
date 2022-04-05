@@ -67,10 +67,7 @@ const formik = useFormik({
       
         _id,
         formik.values.title,
-        formik.values.body
-       
-      
-      ));
+        formik.values.body));
       setEditDialog(false);
 
 
@@ -145,16 +142,13 @@ const formik = useFormik({
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Add recipe
+              Update Recipe
             </Button>
        
           </Box>
          
         </DialogContent>
-        <DialogActions>
-          <Button onClick = { () => UpdateRecipe()}>Update</Button>
-          <Button onClick={EditClose}>Close</Button>
-        </DialogActions>
+
       </Dialog> 
       
     

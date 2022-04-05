@@ -15,7 +15,7 @@ const createAccount = expressAsyncHandler(async(req,res) =>{
     }
 
     const {username,email,user_password} = req.body
-    console.log(username,email,user_password)
+    
     try{
      
         if(!email || !user_password || !username){
@@ -43,7 +43,7 @@ const createAccount = expressAsyncHandler(async(req,res) =>{
         
     }
     catch(err){
-        console.log("WORKING")
+  
         res.status(500).send("why")
     }
 })
@@ -55,7 +55,7 @@ const login_user = expressAsyncHandler(async(request,res) => {
     const {email,password} = request.body
 
     const error = validationResult(request);
-    console.log(error)
+ 
     if(!error.isEmpty()) {
         return response.status(400).json({
             error: error.array()
@@ -96,10 +96,7 @@ const login_user = expressAsyncHandler(async(request,res) => {
 //log out
 
 const logout_user = async(req,res) => {
-    res.cookie("token","",{
-     
-        expires:new Date(0)
-    })
-    res.send("successfully log out")
+    res.cookie("token","",{expires:new Date(0)})
+    res.status(200).json({message:"successfully log out"})
 }
 module.exports = {createAccount,login_user,logout_user}

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid,Card,CardMedia,CardContent,Typography,IconButton,CardActions} from '@mui/material'
+import {Grid,Card,CardContent,Typography,CardActions} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import EditModal from './modals/EditModal';
 import DeleteModal from './modals/DeleteModal';
@@ -8,36 +8,34 @@ import DetailsButton from './DetailsButton';
 
 const useStyles = makeStyles({
   text: {
-  
-
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     wordWrap: 'inherit',
     whiteSpace: 'normal',
   },
+  card:{
+    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px "
+  }
 });
 
 
 export default function Cards({recipe,buttonSetter}) {
 
-  const {_id,title,body} = recipe
-  console.log(buttonSetter)
+  const {_id,title,body,username} = recipe
+
   const classes = useStyles();
   return (
     <Grid item xs={3} >
           
-<Card  sx={{ maxWidth: 250}}> 
+<Card  sx={{ maxWidth: 250}} className={classes.card}> 
 
-<CardMedia
-component='img'
-height='140'
-image='https://source.unsplash.com/random'>
 
-</CardMedia>
   <CardContent>
-    <Typography gutterBottom variant='h5' component='div' className={classes.text}>{title}</Typography>
-    <Typography  color='text.secondary' className={classes.text}>
-  {body}
+    <Typography gutterBottom variant='h5' sx={{mb:1}} className={classes.text}>{title}</Typography>
+    <Typography gutterBottom variant="body2" sx={{mb:3}}  className={classes.text}><b>Author</b>:{username}</Typography>
+
+    <Typography  variant="body2"  className={classes.text}>
+      <b>Description:</b>{body}
     </Typography>
   </CardContent>
   <CardActions  disableSpacing>

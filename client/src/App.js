@@ -4,11 +4,10 @@ import {
   Route,
   Navigate 
 } from "react-router-dom";
-import Notes from './pages/Notes'
-import Create from './pages/Create'
+
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import { purple } from '@material-ui/core/colors'
-import Layout from './components/Layout'
+
 import Login from './components/login'
 import Signup from './components/signup'
 import Home from "./components/Home";
@@ -17,7 +16,10 @@ import UserRecipe from "./components/UserRecipe";
 import RecipeDetails from "./components/ReipeDetails";
 import { useSelector } from "react-redux";
 import Header from "./components/Navigation/Header";
-import Dashboard from "./components/Dashboard";
+
+import SearchPage from "./components/SearchPage"
+import PageNotFound from "./components/PageNotFound";
+import './App.css'
 
 axios.defaults.withCredentials = true;
 
@@ -41,7 +43,7 @@ const theme = createTheme({
 
 function App() {
   const token = useSelector(state=>state.user.logintoken)
-  console.log(token)
+
   return (
 
     <ThemeProvider theme={theme}>
@@ -56,10 +58,12 @@ function App() {
           <Route exact path="/home" element={token ? <Home /> : <Navigate to="/login" replace  />  } />
           <Route exact path="/login" element={token ? <Navigate to="/home"  replace/> : <Login /> }/>
           <Route exact path="/signup"  element={token ? <Navigate to="/home"  replace/> : <Signup /> } />
-          <Route exact path="/user/recipes" element={<UserRecipe />} />
-       
-          <Route  exact path="/recipe/:id" element={<RecipeDetails />} /> 
+          <Route exact path="/user/recipes" element={token ? <UserRecipe /> : <Navigate to="/login"  replace/> } />
+          <Route  exact path='/recipe/search/:title' element={token ? <SearchPage /> : <Navigate to="/login"  replace/> } /> 
+          <Route  exact path="/recipe/:id"element={token ? <RecipeDetails /> : <Navigate to="/login"  replace/> } /> 
+         
 
+          <Route path="*" element={<PageNotFound />}></Route>
           {/* <Route path="/recipe/user" element={<UserRecipe />} /> */}
 
        

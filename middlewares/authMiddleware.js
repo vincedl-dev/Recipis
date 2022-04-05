@@ -8,7 +8,7 @@ const auth = (req,res, next) =>  {
        
       
         const {token} = req.cookies
-        console.log(token)
+    
         if(!token) return res.status().json({errorMessage:"unauthorized"})
         const verified = jwt.verify(token,process.env.JWT_SECRET)
     
@@ -17,7 +17,7 @@ const auth = (req,res, next) =>  {
       
        next()
     }catch(err){
-        console.log(err)
+     
         res.status(401).send({errorMessage:"unauthorized"})  
     }
 }
@@ -36,7 +36,7 @@ const checkUser = (req, res) => {
     res.status(200).json({"username":verified.username})
   }
   catch(err){
-    console.log(err)
+
     res.status(401).send({errorMessage:"unauthorized"})  
 }
  
